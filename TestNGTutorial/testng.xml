@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<!--<suite name="Loan Department"> -->
+<suite name="Loan Department" parallel="tests" thread-count="2">  <!-- tells how many test should run at a time(parallel test) -->
+
+	<!-- Suite level parameterization -->
+	<!--<parameter name="URL" value="qaclickacademy.com"/> -->
+	<listeners>
+		<listener class-name="test.Listeners" />
+	</listeners>
+
+	<test name="Personal Loan" parallel="classes" thread-count="2">  <!-- to run the classes in parallel -->
+		<parameter name="URL" value="personalloan.com" />   <!-- valid for this test case level only -->
+		<classes>
+			<class name="test.day1">
+				<methods>
+					<include name="demo" />
+				</methods>
+			</class>
+			<class name="test.day2" />
+			<class name="test.day4" />
+		</classes>
+	</test> <!-- Test -->
+
+	<test name="Car Loan">
+		<parameter name="URL" value="carloan.com" />   <!-- valid for this test case level only -->
+		<parameter name="APIKey/username" value="123456" />
+		<classes>
+			<class name="test.day3">
+				<methods>
+					<!-- <exclude name="MobileLoginCarLoan"/> -->
+					<exclude name="API.*" />
+				</methods>
+			</class>
+		</classes>
+	</test>
+
+
+</suite> <!-- Suite -->
